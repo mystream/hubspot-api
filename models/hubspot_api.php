@@ -58,6 +58,11 @@ class hubspot_service {
 	public static function engagementDelete(string $engagementId): bool;
 	public static function engagementSearch(array $filters = [], int $limit = 20, int $offset = 0): array;
 
+	// CRM Extensions Card
+	public static function crmExtensionCardCreate(array $data): ?array;
+	public static function crmExtensionCardUpdate(string $id, array $data): bool;
+	public static function crmExtensionCardDelete(string $id): bool;
+	
 	// Custom Objects
 	public static function customObjectCreate(string $objectType, array $data): ?array;
 	public static function customObjectLoad(string $objectType, string $id): ?array;
@@ -100,6 +105,18 @@ class hubspot_service {
 	
 	public static function emailEvents(string $recipientEmail): array;
 
+	// Marketing Emails
+	public static function marketingEmailList(int $limit = 100, int $offset = 0): array;
+	public static function marketingEmailLoad(string $emailId): ?array;
+	public static function marketingEmailClone(string $emailId, string $newName): ?array;
+	public static function marketingEmailSend(string $emailId, array $recipientIds): bool;
+	public static function marketingEmailUpdate(string $emailId, array $data): bool;
+	public static function marketingEmailStatistics(string $emailId): ?array;
+
+	// Campaigns
+	public static function campaignList(int $limit = 50, int $offset = 0): array;
+	public static function campaignLoad(string $campaignId): ?array;
+
 	// Files
 	public static function fileUpload(string $filePath, string $fileName, array $options = []): array;
 	public static function fileDelete(string $fileId): array;
@@ -110,6 +127,36 @@ class hubspot_service {
 	public static function fileReplace(string $fileId, string $newFilePath, string $newFileName = null): array;
 	public static function fileGetSignedUrl(string $fileId): string;
 	public static function fileSearch(string $query, array $options = []): array;
+
+	public static function hubDbTableList(): array;
+
+	// Hub DB
+	public static function hubDbTableLoad(string $tableIdOrName): ?array;
+	public static function hubDbTableCreate(array $tableData): ?array;
+	public static function hubDbTableUpdate(string $tableIdOrName, array $tableData): bool;
+	public static function hubDbTableDelete(string $tableIdOrName): bool;
+	public static function hubDbTablePublish(string $tableIdOrName): bool;
+
+	public static function hubDbTableColumns(string $tableIdOrName): array;
+	public static function hubDbTableColumnCreate(string $tableIdOrName, array $columnData): ?array;
+	public static function hubDbTableColumnUpdate(string $tableIdOrName, string $columnName, array $columnData): bool;
+	public static function hubDbTableColumnDelete(string $tableIdOrName, string $columnName): bool;
+
+	public static function hubDbTableRows(string $tableIdOrName, int $limit = 100, int $offset = 0): array;
+	public static function hubDbTableRowLoad(string $tableIdOrName, string $rowId): ?array;
+	public static function hubDbTableRowCreate(string $tableIdOrName, array $data): ?array;
+	public static function hubDbTableRowUpdate(string $tableIdOrName, string $rowId, array $data): bool;
+	public static function hubDbTableRowDelete(string $tableIdOrName, string $rowId): bool;
+
+	public static function hubDbTableRowsDraft(string $tableIdOrName, int $limit = 100, int $offset = 0): array;
+	public static function hubDbTableRowsPublished(string $tableIdOrName, int $limit = 100, int $offset = 0): array;
+
+	// Tickets
+	public static function ticketLoad(string $ticketId): ?array;
+	public static function ticketSave(array $ticketData): ?array;
+	public static function ticketDelete(string $ticketId): bool;
+	public static function ticketSearch(array $filters = [], int $limit = 20, int $offset = 0): array;
+
 
 	// Subscription Management
 	public static function webhookSubscriptionsList(string $appId): array;
