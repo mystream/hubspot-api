@@ -58,6 +58,24 @@ class hubspot_service {
 	public static function engagementDelete(string $engagementId): bool;
 	public static function engagementSearch(array $filters = [], int $limit = 20, int $offset = 0): array;
 
+	// Lists
+	public static function listLoad(string $listId): ?array;
+	public static function listCreate(array $listData): ?array;
+	public static function listUpdate(string $listId, array $listData): bool;
+	public static function listDelete(string $listId): bool;
+	public static function listContacts(string $listId, int $limit = 100, int $offset = 0): array;
+
+	// Call
+	public static function callCreate(array $callData): ?array;
+	public static function callUpdate(string $callId, array $callData): bool;
+	public static function callDelete(string $callId): bool;
+
+	// Quotes
+	public static function quoteCreate(array $quoteData): ?array;
+	public static function quoteLoad(string $quoteId): ?array;
+	public static function quoteUpdate(string $quoteId, array $quoteData): bool;
+	public static function quoteDelete(string $quoteId): bool;
+	
 	// CRM Extensions Card
 	public static function crmExtensionCardCreate(array $data): ?array;
 	public static function crmExtensionCardUpdate(string $id, array $data): bool;
@@ -88,6 +106,12 @@ class hubspot_service {
 	public static function productFolderUpdate(string $folderId, array $folderData): array;
 	public static function productFolderDelete(string $folderId): array;
 
+	// Line Items
+	public static function lineItemCreate(array $lineItemData): ?array;
+	public static function lineItemLoad(string $lineItemId): ?array;
+	public static function lineItemUpdate(string $lineItemId, array $lineItemData): bool;
+	public static function lineItemDelete(string $lineItemId): bool;
+	
 	// Form Definitions
 	public static function formSearch(): array;
 	public static function formSubmit(string $portalId, string $formGuid, array $fields, array $context = []): bool;
@@ -157,6 +181,10 @@ class hubspot_service {
 	public static function ticketDelete(string $ticketId): bool;
 	public static function ticketSearch(array $filters = [], int $limit = 20, int $offset = 0): array;
 
+	public static function propertyList(string $objectType): array;
+	public static function propertyCreate(string $objectType, array $propertyData): ?array;
+	public static function propertyUpdate(string $objectType, string $propertyName, array $propertyData): bool;
+	public static function propertyDelete(string $objectType, string $propertyName): bool;
 
 	// Subscription Management
 	public static function webhookSubscriptionsList(string $appId): array;
@@ -180,4 +208,9 @@ class hubspot_service {
 
 	// Enroll someone into a Workflow
 	public static function workflowEnrollContact(string $workflowId, string $email): array;
+
+	// Analytics
+	public static function analyticsTrafficSources(array $filters): array;
+	public static function analyticsPageViews(array $filters): array;
+
 }
